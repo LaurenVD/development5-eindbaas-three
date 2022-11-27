@@ -27,6 +27,8 @@ const scene = new THREE.Scene();
       //import gltf model from /assets
       const loader = new GLTFLoader();
       loader.load( '/assets/gltf/donut.glb', function ( gltf ) {
+        gltf.scene.scale.set(25,25,25);
+        gltf.scene.position.set(0,0,0);
         scene.add( gltf.scene );
       }, undefined, function ( error ) {
         console.error( error );
