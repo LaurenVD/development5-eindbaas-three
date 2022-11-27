@@ -6,7 +6,10 @@ const scene = new THREE.Scene();
 			const camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
 
 			const renderer = new THREE.WebGLRenderer();
-			renderer.setSize( window.innerWidth, window.innerHeight );
+      //set renderer size to half of page size
+      renderer.setSize( window.innerWidth/2, window.innerHeight/2 );
+
+
 			document.body.appendChild( renderer.domElement );
 
 			const geometry = new THREE.BoxGeometry( 1, 1, 1 );
