@@ -70,8 +70,12 @@ const scene = new THREE.Scene();
         console.log(renderer.domElement);
         const screenshot = renderer.domElement.toDataURL("image/webp");
         console.log(screenshot);
+        //save input as name
+        const name = document.getElementById('name').value;
+        console.log(name);
         //send data to backend
         const data = {
+          name: name,
           dough: color,
           image: screenshot,
         };
