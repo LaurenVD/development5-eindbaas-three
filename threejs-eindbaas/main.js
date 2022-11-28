@@ -66,9 +66,14 @@ const scene = new THREE.Scene();
         const donut = scene.getObjectByName('donut');
         //get color from color picker
         const color = colorPicker.color.hexString;
+        //get screenshot of donut
+        console.log(renderer.domElement);
+        const screenshot = renderer.domElement.toDataURL("image/webp");
+        console.log(screenshot);
         //send data to backend
         const data = {
           dough: color,
+          image: screenshot,
         };
         fetch(apiURL, {
           method: 'POST',
