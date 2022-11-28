@@ -22,3 +22,17 @@ body {
   vertical-align: middle;
   margin-left: 40px;
 }
+
+.configurator {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 50%;
+  height: 100%;
+  background-color: #fff;
+  border-radius: 20px;
+  padding: 20px;
+}
+
+

@@ -28,6 +28,12 @@ const scene = new THREE.Scene();
         gltf.scene.scale.set(25,25,25);
         gltf.scene.position.set(0,0,0);
         scene.add( gltf.scene );
+        //console.log glb file
+        console.log(gltf);
+        //console log the material type of the glb file
+        console.log(gltf.scene.children[0].material);
+        
+      
       }, undefined, function ( error ) {
         console.error( error );
       } );
