@@ -10,7 +10,6 @@ const scene = new THREE.Scene();
 			const camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
 
 			const renderer = new THREE.WebGLRenderer({preserveDrawingBuffer: true});
-      //set renderer size to half of page size
       renderer.setSize( window.innerWidth/2, window.innerHeight/2 );
       document.body.appendChild( renderer.domElement );
 
@@ -32,7 +31,7 @@ const scene = new THREE.Scene();
         console.log(gltf);
         //console log the material type of the glb file
         console.log(gltf.scene.children[0].material);
-        
+
       
       }, undefined, function ( error ) {
         console.error( error );

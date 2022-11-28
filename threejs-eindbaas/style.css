@@ -1,5 +1,4 @@
 body {
-  min-height: 90vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -8,26 +7,12 @@ body {
 .color-picker {
   position:relative;
 }
-
-.color-indicator {
-  display:inline-block;
-  width: 200px;
-  height: 200px;
-  background-color: #fff;
-  border-radius: 20px;
-  vertical-align: middle;
-}
 #color-picker {
-  display: inline-block;
-  vertical-align: middle;
   margin-left: 40px;
 }
 
 .configurator {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
   width: 50%;
   height: 100%;
   background-color: #fff;
@@ -35,4 +20,13 @@ body {
   padding: 20px;
 }
 
-
+#name {
+  width: 75%;
+  height: 50px;
+  border: none;
+  border-bottom: 1px solid #000;
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  padding-top: 100px;
+}
