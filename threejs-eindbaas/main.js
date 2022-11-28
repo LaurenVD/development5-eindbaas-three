@@ -9,7 +9,7 @@ import { isPowerOfTwo } from 'three/src/math/MathUtils';
 const scene = new THREE.Scene();
 			const camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
 
-			const renderer = new THREE.WebGLRenderer();
+			const renderer = new THREE.WebGLRenderer({preserveDrawingBuffer: true});
       //set renderer size to half of page size
       renderer.setSize( window.innerWidth/2, window.innerHeight/2 );
       document.body.appendChild( renderer.domElement );
@@ -57,5 +57,33 @@ const scene = new THREE.Scene();
 
 				renderer.render( scene, camera );
 			};
+
+      const apiURL = 'https://donutello-backend.onrender.com/api/v1/donuts';
+
+      //save donut gltb model to backend
+      const saveButton = document.getElementById('button');
+      saveButton.addEventListener('click', function() {
+        const donut = scene.getObjectByName('donut');
+        //get color from color picker
+        const color = colorPicker.color.hexString;
+        //send data to backend
+        const data = {
+          dough: color,
+        };
+        fetch(apiURL, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data),
+        })
+        .then(response => response.json())
+        .then(data => {
+          console.log('Success:', data);
+        })
+        .catch((error) => {
+          console.error('Error:', error);
+        });
+      });
 
 			animate();
