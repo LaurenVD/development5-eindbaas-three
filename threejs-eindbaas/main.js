@@ -36,6 +36,16 @@ const scene = new THREE.Scene();
           } );
         } );
 
+        //add logo plane on donut model
+        const planeGeometry = new THREE.PlaneGeometry( 1, 1, 32 );
+        const planeMaterial = new THREE.MeshBasicMaterial( {color: 0xffff00, side: THREE.DoubleSide} );
+        const plane = new THREE.Mesh( planeGeometry, planeMaterial );
+        plane.position.set(1,1.76,0);
+        scene.add( plane );
+        //rotate plane to make it look like it is on the donut
+        plane.rotation.x = Math.PI / 2;
+        plane.rotation.z = math.PI / 2;
+
         
 
       }, undefined, function ( error ) {
@@ -48,6 +58,8 @@ const scene = new THREE.Scene();
         width: 200,
         color: "#f00",
       });
+
+      
 
       //increase canvas size when window is resized
       window.addEventListener('resize', () => {
