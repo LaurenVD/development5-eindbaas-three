@@ -46,7 +46,19 @@ const scene = new THREE.Scene();
         plane.rotation.x = Math.PI / 2;
         plane.rotation.z = math.PI / 2;
 
-        
+        //save uploaded image to plane texture
+        const input = document.getElementById('myFile');
+        input.addEventListener('change', function(e){
+          const reader = new FileReader();
+          reader.onload = function(){
+            const texture = new THREE.TextureLoader().load(reader.result);
+            plane.material.map = texture;
+            plane.material.needsUpdate = true;
+          }
+          reader.readAsDataURL(input.files[0]);
+        });
+
+
 
       }, undefined, function ( error ) {
         console.error( error );
