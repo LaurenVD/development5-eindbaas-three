@@ -27,12 +27,17 @@ const scene = new THREE.Scene();
         gltf.scene.scale.set(25,25,25);
         gltf.scene.position.set(0,0,0);
         scene.add( gltf.scene );
-        //console.log glb file
-        console.log(gltf);
-        //console log the material type of the glb file
-        console.log(gltf.scene.children[0].material);
+        //add function to button randomize
+        document.getElementById("random").addEventListener("click", function(){
+          gltf.scene.traverse( function ( child ) {
+            if ( child.isMesh ) {
+              child.material.color.setHex( Math.random() * 0xffffff );
+            }
+          } );
+        } );
 
-      
+        
+
       }, undefined, function ( error ) {
         console.error( error );
       } );
@@ -44,6 +49,13 @@ const scene = new THREE.Scene();
         color: "#f00",
       });
 
+      //increase canvas size when window is resized
+      window.addEventListener('resize', () => {
+        renderer.setSize(window.innerWidth/2, window.innerHeight/2);
+        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.updateProjectionMatrix();
+      });
+
       colorPicker.on('color:change', function(color) {
         //select donut glaze
         const donut = scene.getObjectByName('donut');
@@ -51,6 +63,8 @@ const scene = new THREE.Scene();
 
       });
       camera.position.z = 5;
+
+
 
       //add orbit controls
       const controls = new OrbitControls( camera, renderer.domElement );
