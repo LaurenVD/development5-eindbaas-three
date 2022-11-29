@@ -47,8 +47,6 @@ const scene = new THREE.Scene();
 
         });
 
-      
-
         document.getElementById("flavor").addEventListener("change", function(e){
           //get the value of the dropdown menu
           const flavorColor = e.target.value;
@@ -71,7 +69,6 @@ const scene = new THREE.Scene();
           }
             
         });
-
         
         //change topping color according to sprinkles dropdown
         document.getElementById("sprinkles").addEventListener("change", function(e){
@@ -98,9 +95,7 @@ const scene = new THREE.Scene();
             //set glaze rgb to blue color
             sprinkles.visible = true;
             sprinkles.material.color.setRGB(0,0,1);
-            
           }
-
           //if dropdown is none, don't show sprinkles
           if(sprinklesColor == "none"){
             //set glaze rgb to very light blue color
@@ -109,18 +104,43 @@ const scene = new THREE.Scene();
 
         });
 
-        //add logo plane on donut model
-        const planeGeometry = new THREE.PlaneGeometry( 1, 1, 32 );
-        const planeMaterial = new THREE.MeshBasicMaterial( {color: 0xffff00, side: THREE.DoubleSide} );
-        const plane = new THREE.Mesh( planeGeometry, planeMaterial );
-        plane.position.set(1,1.76,0);
-        scene.add( plane );
-        //stick plane to donut and bend it
-        plane.lookAt(gltf.scene.position);
-        plane.rotateX(Math.PI/2);
-        plane.rotateZ(Math.PI/2);
-        plane.scale.set(0.5,0.5,0.5);
+        //upload image to texture and create a plane on the donut to display the image
+        document.getElementById("file").addEventListener("change", function(e){
+          //get the file from the input
+          const file = e.target.files[0];
+          //create a new image
+          const img = new Image();
+          //set the image src to the file
+          img.src = URL.createObjectURL(file);
+          //create a new texture
+          const texture = new THREE.Texture(img);
+          //load the texture
+          texture.needsUpdate = true;
+          //create a new material with the texture
+          const material = new THREE.MeshBasicMaterial({map: texture});
+          //create a new plane geometry
+          const geometry = new THREE.PlaneGeometry( 1, 1, 1 );
+          //create a new mesh with the geometry and material
+          const plane = new THREE.Mesh( geometry, material );
+          //add the plane to the scene
+          scene.add( plane );
+          //set the plane position
+          plane.position.set(1,1.76,0);
+          //set the plane scale
+          plane.scale.set(0.5,0.5,0.5);
+          plane.lookAt(gltf.scene.position);
+          plane.rotateX(Math.PI/2);
+          plane.rotateZ(Math.PI/2);
+          plane.rotateY(Math.PI);
+          //show image on other side of plane
 
+          //dont show black background on plane
+          plane.material.transparent = true;
+
+        }
+        );
+        
+          
       }, undefined, function ( error ) {
         console.error( error );
       } );
@@ -167,7 +187,7 @@ const scene = new THREE.Scene();
 
         //get rgb value from dropdown
         const flavor = document.getElementById('flavor').value;
-        
+
 
         //send data to backend
         const data = {
