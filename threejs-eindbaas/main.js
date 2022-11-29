@@ -47,16 +47,11 @@ const scene = new THREE.Scene();
           [252,90,141],
         ];
 
-        //console log the colors from dropdown menu when changed
         document.getElementById("flavor").addEventListener("change", function(e){
           //get the value of the dropdown menu
           const flavorColor = e.target.value;
-          //console log the color
-
           //select glaze from model
           const glaze = gltf.scene.getObjectByName("glaze");
-          //get value from dropdown menu
-          const flavor = document.getElementById("flavor").value;
           //if dropdown is chocolate, set color to chocolate
           if(flavorColor == "chocolate"){
             //set glaze rgb value to colors array chocolate
@@ -75,6 +70,30 @@ const scene = new THREE.Scene();
             
         });
 
+        
+        //change topping color according to sprinkles dropdown
+        document.getElementById("sprinkles").addEventListener("change", function(e){
+          //get the value of the dropdown menu
+          const sprinklesColor = e.target.value;
+          //select glaze from model
+          const sprinkles = gltf.scene.getObjectByName("topping");
+          //if dropdown is chocolate, set color to chocolate
+          if(sprinklesColor == "chocolate"){
+            //set glaze rgb value to colors array chocolate
+            sprinkles.material.color.setRGB(colors[1][0]/255,colors[1][1]/255,colors[1][2]/255);
+          }
+          //if dropdown is rainbow, set color to rainbow
+          if(sprinklesColor == "sugar"){
+            //set glaze rgb to white color
+            sprinkles.material.color.setRGB(1,1,1);
+
+          }
+          //if dropdown is crystal, set color to crystal
+          if(sprinklesColor == "crystal"){
+            //set glaze rgb to very light blue color
+            sprinkles.material.color.setRGB(0.9,0.9,1);  
+          }
+        });
 
         //add logo plane on donut model
         const planeGeometry = new THREE.PlaneGeometry( 1, 1, 32 );
