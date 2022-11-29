@@ -4,13 +4,6 @@ body {
   align-items: center;
 }
 
-.color-picker {
-  position:relative;
-}
-#color-picker {
-  margin-left: 40px;
-}
-
 .configurator {
   display: flex;
   width: 50%;

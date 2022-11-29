@@ -63,14 +63,6 @@ const scene = new THREE.Scene();
       }, undefined, function ( error ) {
         console.error( error );
       } );
-
-      //add color picker to change background color
-      const colorIndicator = document.getElementById('color-picker');
-      const colorPicker = new iro.ColorPicker("#color-picker", {
-        width: 200,
-        color: "#f00",
-      });
-
       
 
       //increase canvas size when window is resized
@@ -78,13 +70,6 @@ const scene = new THREE.Scene();
         renderer.setSize(window.innerWidth/2, window.innerHeight/2);
         camera.aspect = window.innerWidth / window.innerHeight;
         camera.updateProjectionMatrix();
-      });
-
-      colorPicker.on('color:change', function(color) {
-        //select donut glaze
-        const donut = scene.getObjectByName('donut');
-        donut.material.color.set(color.hexString);
-
       });
       camera.position.z = 5;
 
