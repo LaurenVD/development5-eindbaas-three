@@ -125,13 +125,16 @@ const scene = new THREE.Scene();
           //add the plane to the scene
           scene.add( plane );
           //set the plane position
-          plane.position.set(1,1.76,0);
+          plane.position.set(1,1.8,0);
           //set the plane scale
           plane.scale.set(0.5,0.5,0.5);
           plane.lookAt(gltf.scene.position);
           plane.rotateX(Math.PI/2);
           plane.rotateZ(Math.PI/2);
           plane.rotateY(Math.PI);
+          //rotate the plane to face the camera
+          plane.rotation.set(0,-2,0);
+
           //show image on other side of plane
 
           //dont show black background on plane
@@ -139,13 +142,10 @@ const scene = new THREE.Scene();
 
         }
         );
-        
           
       }, undefined, function ( error ) {
         console.error( error );
       } );
-
-      
 
       //increase canvas size when window is resized
       window.addEventListener('resize', () => {
@@ -154,8 +154,6 @@ const scene = new THREE.Scene();
         camera.updateProjectionMatrix();
       });
       camera.position.z = 5;
-
-
 
       //add orbit controls
       const controls = new OrbitControls( camera, renderer.domElement );
@@ -167,7 +165,6 @@ const scene = new THREE.Scene();
 
 				renderer.render( scene, camera );
 			};
-
       const apiURL = 'https://donutello-backend.onrender.com/api/v1/donuts';
 
       //save donut gltb model to backend
@@ -175,8 +172,7 @@ const scene = new THREE.Scene();
       saveButton.addEventListener('click', function() {
         const donut = scene.getObjectByName('donut');
         //get color from array based on dropdown value
-        
-        
+          
         //get screenshot of donut
         console.log(renderer.domElement);
         const screenshot = renderer.domElement.toDataURL("image/webp");
@@ -187,7 +183,6 @@ const scene = new THREE.Scene();
 
         //get rgb value from dropdown
         const flavor = document.getElementById('flavor').value;
-
 
         //send data to backend
         const data = {
