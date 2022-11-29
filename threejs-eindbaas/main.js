@@ -34,7 +34,47 @@ const scene = new THREE.Scene();
               child.material.color.setHex( Math.random() * 0xffffff );
             }
           } );
-        } );
+
+        });
+
+        //create an array with rgb values for each dropdown option
+        const colors = [
+          //vanilla
+          [249,229,188],
+          //chocolate
+          [123,63,0],
+          //strawberry
+          [252,90,141],
+        ];
+
+        //console log the colors from dropdown menu when changed
+        document.getElementById("flavor").addEventListener("change", function(e){
+          //get the value of the dropdown menu
+          const flavorColor = e.target.value;
+          //console log the color
+
+          //select glaze from model
+          const glaze = gltf.scene.getObjectByName("glaze");
+          //get value from dropdown menu
+          const flavor = document.getElementById("flavor").value;
+          //if dropdown is chocolate, set color to chocolate
+          if(flavorColor == "chocolate"){
+            //set glaze rgb value to colors array chocolate
+            glaze.material.color.setRGB(colors[1][0]/255,colors[1][1]/255,colors[1][2]/255);
+          }
+          //if dropdown is vanilla, set color to vanilla
+          if(flavorColor == "vanilla"){
+            //set glaze rgb value to colors array vanilla
+            glaze.material.color.setRGB(colors[0][0]/255,colors[0][1]/255,colors[0][2]/255);
+          }
+          //if dropdown is strawberry, set color to strawberry
+          if(flavorColor == "strawberry"){
+            //set glaze rgb value to colors array strawberry
+            glaze.material.color.setRGB(colors[2][0]/255,colors[2][1]/255,colors[2][2]/255);
+          }
+            
+        });
+
 
         //add logo plane on donut model
         const planeGeometry = new THREE.PlaneGeometry( 1, 1, 32 );
