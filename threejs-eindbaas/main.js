@@ -21,6 +21,16 @@ const scene = new THREE.Scene();
       const directionalLight = new THREE.DirectionalLight( 0xffffff, 0.5 );
       scene.add( directionalLight );
 
+      //create an array with rgb values for each dropdown option
+      const colors = [
+        //vanilla
+        [249,229,188],
+        //chocolate
+        [123,63,0],
+        //strawberry
+        [252,90,141],
+      ];
+
       //import gltf model from /assets
       const loader = new GLTFLoader();
       loader.load( '/assets/gltf/donut.glb', function ( gltf ) {
@@ -37,15 +47,7 @@ const scene = new THREE.Scene();
 
         });
 
-        //create an array with rgb values for each dropdown option
-        const colors = [
-          //vanilla
-          [249,229,188],
-          //chocolate
-          [123,63,0],
-          //strawberry
-          [252,90,141],
-        ];
+      
 
         document.getElementById("flavor").addEventListener("change", function(e){
           //get the value of the dropdown menu
@@ -80,19 +82,31 @@ const scene = new THREE.Scene();
           //if dropdown is chocolate, set color to chocolate
           if(sprinklesColor == "chocolate"){
             //set glaze rgb value to colors array chocolate
+            //set sprinkles to visible
+            sprinkles.visible = true;
             sprinkles.material.color.setRGB(colors[1][0]/255,colors[1][1]/255,colors[1][2]/255);
           }
           //if dropdown is rainbow, set color to rainbow
           if(sprinklesColor == "sugar"){
             //set glaze rgb to white color
+            sprinkles.visible = true;
             sprinkles.material.color.setRGB(1,1,1);
 
           }
           //if dropdown is crystal, set color to crystal
           if(sprinklesColor == "crystal"){
-            //set glaze rgb to very light blue color
-            sprinkles.material.color.setRGB(0.9,0.9,1);  
+            //set glaze rgb to blue color
+            sprinkles.visible = true;
+            sprinkles.material.color.setRGB(0,0,1);
+            
           }
+
+          //if dropdown is none, don't show sprinkles
+          if(sprinklesColor == "none"){
+            //set glaze rgb to very light blue color
+            sprinkles.visible = false;
+          }
+
         });
 
         //add logo plane on donut model
@@ -101,27 +115,16 @@ const scene = new THREE.Scene();
         const plane = new THREE.Mesh( planeGeometry, planeMaterial );
         plane.position.set(1,1.76,0);
         scene.add( plane );
-        //rotate plane to make it look like it is on the donut
-        plane.rotation.x = Math.PI / 2;
-        plane.rotation.z = math.PI / 2;
-
-        //save uploaded image to plane texture
-        const input = document.getElementById('myFile');
-        input.addEventListener('change', function(e){
-          const reader = new FileReader();
-          reader.onload = function(){
-            const texture = new THREE.TextureLoader().load(reader.result);
-            plane.material.map = texture;
-            plane.material.needsUpdate = true;
-          }
-          reader.readAsDataURL(input.files[0]);
-        });
-
-
+        //stick plane to donut and bend it
+        plane.lookAt(gltf.scene.position);
+        plane.rotateX(Math.PI/2);
+        plane.rotateZ(Math.PI/2);
+        plane.scale.set(0.5,0.5,0.5);
 
       }, undefined, function ( error ) {
         console.error( error );
       } );
+
       
 
       //increase canvas size when window is resized
@@ -151,8 +154,9 @@ const scene = new THREE.Scene();
       const saveButton = document.getElementById('button');
       saveButton.addEventListener('click', function() {
         const donut = scene.getObjectByName('donut');
-        //get color from color picker
-        const color = colorPicker.color.hexString;
+        //get color from array based on dropdown value
+        
+        
         //get screenshot of donut
         console.log(renderer.domElement);
         const screenshot = renderer.domElement.toDataURL("image/webp");
@@ -160,10 +164,15 @@ const scene = new THREE.Scene();
         //save input as name
         const name = document.getElementById('name').value;
         console.log(name);
+
+        //get rgb value from dropdown
+        const flavor = document.getElementById('flavor').value;
+        
+
         //send data to backend
         const data = {
           name: name,
-          dough: color,
+          glaze: flavor,
           image: screenshot,
         };
         fetch(apiURL, {
