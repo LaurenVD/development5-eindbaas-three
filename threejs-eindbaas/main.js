@@ -12,9 +12,9 @@ const scene = new THREE.Scene();
 			const renderer = new THREE.WebGLRenderer({preserveDrawingBuffer: true});
       renderer.setSize( window.innerWidth, window.innerHeight );
       document.body.appendChild( renderer.domElement );
+
       //set background color to #E72C70
       renderer.setClearColor(0xE72C70, 1);
-
 
       //add ambient light
       const ambientLight = new THREE.AmbientLight( 0xffffff, 0.5 );
@@ -121,33 +121,24 @@ const scene = new THREE.Scene();
           texture.needsUpdate = true;
           //make transparent based on alpha channel
           texture.minFilter = THREE.LinearFilter;
-          
+
           //create a new material with the texture
-          const material = new THREE.MeshBasicMaterial({map: texture});
-          //create a box geometry
-          const geometry = new THREE.BoxGeometry( 1, 0.1, 1 );
+          const material = new THREE.MeshBasicMaterial({map: texture, transparent: true});
+          //create a new plane geometry
+          const geometry = new THREE.PlaneGeometry( 1, 1, 32 );
           //create a new mesh with the geometry and material
-          const box = new THREE.Mesh( geometry, material );
+          const plane = new THREE.Mesh( geometry, material );
+          //set the plane position to the donut
+          plane.position.set(0,1.77,1.2);
+     
+          //rotate the plane so it's facing up
+          plane.rotation.x = -Math.PI/2;
+          //set the plane scale to the donut
+          plane.scale.set(0.5,0.5,0.5);
           //add the plane to the scene
-          scene.add( box );
-          //put the box on the donut
-          box.position.set(0,0.5,0);
-          //set the plane scale
-          box.scale.set(0.5,0.5,0.5);
-          box.lookAt(gltf.scene.position);
-          box.rotateX(Math.PI/2);
-          box.rotateZ(Math.PI/2);
-          box.rotateY(Math.PI);
-          //rotate the plane to face the camera
-          box.rotation.set(0,-2,0);
-
-        
-
-          //show image on other side of plane
-
-          //dont show black background on plane
-          plane.material.transparent = true;
-
+          scene.add( plane );
+          //show logo on both sides
+          plane.material.side = THREE.DoubleSide;
         }
         );
           
@@ -157,7 +148,7 @@ const scene = new THREE.Scene();
 
       //increase canvas size when window is resized
       window.addEventListener('resize', () => {
-        renderer.setSize(window.innerWidth/2, window.innerHeight/2);
+        renderer.setSize(window.innerWidth, window.innerHeight);
         camera.aspect = window.innerWidth / window.innerHeight;
         camera.updateProjectionMatrix();
       });

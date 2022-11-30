@@ -1,6 +1,8 @@
+@import url('https://fonts.googleapis.com/css2?family=Dosis:wght@600&display=swap');
+
 body {
   /* select a nice round font */
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Dosis', sans-serif;
 
 }
 
@@ -10,7 +12,7 @@ body {
   position: absolute;
   left: 0;
   top: 0;
-  width: 30%;
+  width: 25%;
   height: 100%;
   background-color: #fff;
   border-right: 1px solid #ccc;
@@ -20,13 +22,14 @@ body {
 
 
 #name {
-    padding: 6px;
+    font-family: 'Dosis', sans-serif;
+    padding: 10px 15px;
      font-size: 19px;
      border-width: 0px;
      background-color: #E72C70;
      color: #F7F249;
      border-style: inset;
-     border-radius: 34px;
+     border-radius: 10px;
      box-shadow: 7px 7px 10px rgba(66,66,66,.75);
      margin-top: 50px;
 }
@@ -42,6 +45,7 @@ body {
 }
 
 #button, #random {
+  font-family: 'Dosis', sans-serif;
   background-color: #82D1E4;
   color: #E72C70;
   border: none;
@@ -54,9 +58,10 @@ body {
   cursor: pointer;
   box-shadow: 7px 7px 10px rgba(66,66,66,.75);
   margin-top: 30px;
+  border-radius: 10px;
 }
 
-/* put canvas in the background */
+/* put canvas in the background and make it 70% of screen */
 canvas {
   position: absolute;
   top: 0;
@@ -80,3 +85,24 @@ select {
 select option {
   padding: 10px 5px;
   }
+  
+  /* change upload button and text font and size */
+  input[type="file"] {
+    font-family: 'Dosis', sans-serif;
+    font-size: 14px;
+  }
+
+  /* make responsive for phone */
+  @media only screen and (max-width: 600px) {
+    .configurator {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      border: none;
+    }
+  }
+
+
+
+
+
