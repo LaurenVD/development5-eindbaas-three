@@ -12,9 +12,9 @@ const scene = new THREE.Scene();
 			const renderer = new THREE.WebGLRenderer({preserveDrawingBuffer: true});
       renderer.setSize( window.innerWidth, window.innerHeight );
       document.body.appendChild( renderer.domElement );
-      //background to white
-      renderer.setClearColor(0xffffff, 1);
-      
+      //set background color to #E72C70
+      renderer.setClearColor(0xE72C70, 1);
+
 
       //add ambient light
       const ambientLight = new THREE.AmbientLight( 0xffffff, 0.5 );
@@ -119,24 +119,29 @@ const scene = new THREE.Scene();
           const texture = new THREE.Texture(img);
           //load the texture
           texture.needsUpdate = true;
+          //make transparent based on alpha channel
+          texture.minFilter = THREE.LinearFilter;
+          
           //create a new material with the texture
           const material = new THREE.MeshBasicMaterial({map: texture});
-          //create a new plane geometry
-          const geometry = new THREE.PlaneGeometry( 1, 1, 1 );
+          //create a box geometry
+          const geometry = new THREE.BoxGeometry( 1, 0.1, 1 );
           //create a new mesh with the geometry and material
-          const plane = new THREE.Mesh( geometry, material );
+          const box = new THREE.Mesh( geometry, material );
           //add the plane to the scene
-          scene.add( plane );
-          //set the plane position
-          plane.position.set(1,1.8,0);
+          scene.add( box );
+          //put the box on the donut
+          box.position.set(0,0.5,0);
           //set the plane scale
-          plane.scale.set(0.5,0.5,0.5);
-          plane.lookAt(gltf.scene.position);
-          plane.rotateX(Math.PI/2);
-          plane.rotateZ(Math.PI/2);
-          plane.rotateY(Math.PI);
+          box.scale.set(0.5,0.5,0.5);
+          box.lookAt(gltf.scene.position);
+          box.rotateX(Math.PI/2);
+          box.rotateZ(Math.PI/2);
+          box.rotateY(Math.PI);
           //rotate the plane to face the camera
-          plane.rotation.set(0,-2,0);
+          box.rotation.set(0,-2,0);
+
+        
 
           //show image on other side of plane
 

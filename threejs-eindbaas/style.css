@@ -10,7 +10,7 @@ body {
   position: absolute;
   left: 0;
   top: 0;
-  width: 300px;
+  width: 30%;
   height: 100%;
   background-color: #fff;
   border-right: 1px solid #ccc;
@@ -42,11 +42,10 @@ body {
 }
 
 #button, #random {
-  background-color: #E72C70;
-  color: #F7F249;
+  background-color: #82D1E4;
+  color: #E72C70;
   border: none;
-  border-radius: 34px;
-  padding: 10px 20px;
+  padding: 10px 15px;
   text-align: center;
   text-decoration: none;
   display: inline-block;
@@ -64,3 +63,20 @@ canvas {
   left: 0;
   z-index: -1;
 }
+
+/* make select boxes round and wider */
+select {
+  padding: 10px 5px;
+  width: 100%;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  background-color: #fff;
+  font-size: 16px;
+  margin-bottom: 20px;
+  position: relative;
+  }
+
+/* make drop down menu appear to come out of dropdown box */
+select option {
+  padding: 10px 5px;
+  }
