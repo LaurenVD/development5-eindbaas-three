@@ -1,18 +1,23 @@
 body {
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  /* select a nice round font */
+  font-family: 'Roboto', sans-serif;
+
 }
 
+
+/* put .configurator on left side of screen */
 .configurator {
-  display: flex;
-  width: 50%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 300px;
   height: 100%;
   background-color: #fff;
-  border-radius: 20px;
+  border-right: 1px solid #ccc;
   padding: 20px;
+  box-sizing: border-box;
 }
+
 
 #name {
     padding: 6px;
@@ -49,4 +54,13 @@ body {
   margin: 4px 2px;
   cursor: pointer;
   box-shadow: 7px 7px 10px rgba(66,66,66,.75);
+  margin-top: 30px;
+}
+
+/* put canvas in the background */
+canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
 }
