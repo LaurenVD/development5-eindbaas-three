@@ -160,6 +160,11 @@ const scene = new THREE.Scene();
       controls.enableDamping = true;
       controls.update();
 
+      //restrict zoom in and out
+      controls.minDistance = 3;
+      controls.maxDistance = 7;
+
+
 			function animate() {
 				requestAnimationFrame( animate );
 
@@ -176,7 +181,6 @@ const scene = new THREE.Scene();
         //get screenshot of donut
         console.log(renderer.domElement);
         const screenshot = renderer.domElement.toDataURL("image/webp");
-        console.log(screenshot);
         //save input as name
         const name = document.getElementById('name').value;
         console.log(name);
