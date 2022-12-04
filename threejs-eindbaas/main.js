@@ -187,11 +187,17 @@ const scene = new THREE.Scene();
         //get rgb value from dropdown
         const flavor = document.getElementById('flavor').value;
 
+        //get email from input
+        const email = document.getElementById('email').value;
+        //add restraint to email input
+
         //send data to backend
         const data = {
           name: name,
           glaze: flavor,
           image: screenshot,
+          email, email,
+
         };
         fetch(apiURL, {
           method: 'POST',
