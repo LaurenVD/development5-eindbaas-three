@@ -41,7 +41,7 @@ const scene = new THREE.Scene();
         gltf.scene.position.set(0,0,0);
         scene.add( gltf.scene );
         //add function to button randomize
-        document.getElementById("random").addEventListener("click", function(){
+        document.getElementById("input__random").addEventListener("click", function(){
           gltf.scene.traverse( function ( child ) {
             if ( child.isMesh ) {
               child.material.color.setHex( Math.random() * 0xffffff );
@@ -50,7 +50,7 @@ const scene = new THREE.Scene();
 
         });
 
-        document.getElementById("flavor").addEventListener("change", function(e){
+        document.getElementById("configurator__flavor").addEventListener("change", function(e){
           //get the value of the dropdown menu
           const flavorColor = e.target.value;
           //select glaze from model
@@ -74,7 +74,7 @@ const scene = new THREE.Scene();
         });
         
         //change topping color according to sprinkles dropdown
-        document.getElementById("sprinkles").addEventListener("change", function(e){
+        document.getElementById("configurator__sprinkles").addEventListener("change", function(e){
           //get the value of the dropdown menu
           const sprinklesColor = e.target.value;
           //select glaze from model
@@ -108,7 +108,7 @@ const scene = new THREE.Scene();
         });
 
         //upload image to texture and create a plane on the donut to display the image
-        document.getElementById("file").addEventListener("change", function(e){
+        document.getElementById("configurator__file").addEventListener("change", function(e){
           //get the file from the input
           const file = e.target.files[0];
           //create a new image
@@ -172,7 +172,7 @@ const scene = new THREE.Scene();
       const apiURL = 'https://donutello-backend.onrender.com/api/v1/donuts';
 
       //save donut gltb model to backend
-      const saveButton = document.getElementById('button');
+      const saveButton = document.getElementById('input__button');
       saveButton.addEventListener('click', function() {
         const donut = scene.getObjectByName('donut');
         //get color from array based on dropdown value

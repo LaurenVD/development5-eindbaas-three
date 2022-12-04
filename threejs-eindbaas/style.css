@@ -1,5 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Dosis:wght@600&display=swap');
 
+.root {
+  --pinkish: #E72C70;
+  --blueish: #82D1E4;
+  --yellowish: #F7F249;
+}
+
+
 body {
   /* select a nice round font */
   font-family: 'Dosis', sans-serif;
@@ -21,7 +28,7 @@ body {
 }
 
 
-#name {
+#input__name {
     font-family: 'Dosis', sans-serif;
     padding: 10px 15px;
      font-size: 19px;
@@ -38,13 +45,7 @@ body {
   color: #F7F249
 }
 
-#input {
-  display:flex;
-  flex-direction: row;
-  flex-wrap: wrap
-}
-
-#button, #random {
+#input__button, #input__random {
   font-family: 'Dosis', sans-serif;
   background-color: #82D1E4;
   color: #E72C70;
@@ -92,15 +93,37 @@ select option {
     font-size: 14px;
   }
 
-  /* make responsive for phone */
-  @media only screen and (max-width: 600px) {
+  /* configurator responsive on phone */
+  @media screen and (max-width: 600px) {
     .configurator {
       width: 100%;
-      height: 100%;
       position: relative;
-      border: none;
+      border-right: none;
+    }
+  /* shrink font and size of boxes */
+    select {
+      font-size: 14px;
+      padding: 5px 5px;
+    }
+    input[type="file"] {
+      font-size: 12px;
+    }
+    #button, #random {
+      font-size: 14px;
+      padding: 5px 15px;
     }
   }
+
+  /* canvas responsive on phone */
+  @media screen and (max-width: 600px) {
+    canvas {
+      width: 100%;
+      height: 100%;
+    }
+
+  }
+
+  
 
 
 
