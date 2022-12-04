@@ -109,16 +109,18 @@ select option {
 
     #app {
       position: absolute;
-      top: 0;
+      z-index: 1;
     }
 
-    /* put the canvas on top of the configurator */
+    /* put canvas in the background*/
     canvas {
       position: absolute;
-      top: 46%;
+      top: 0;
       left: 0;
       z-index: -1;
     }
+    
+
 
     /* remove spacing between select boxes */
     select {

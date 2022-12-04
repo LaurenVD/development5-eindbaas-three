@@ -38,7 +38,9 @@ const scene = new THREE.Scene();
       const loader = new GLTFLoader();
       loader.load( '/assets/gltf/donut.glb', function ( gltf ) {
         gltf.scene.scale.set(25,25,25);
-        gltf.scene.position.set(0,0,0);
+        //set donut to 60% of canvas width
+    
+        gltf.scene.position.set(0,0,0); 
         scene.add( gltf.scene );
         //add function to button randomize
         document.getElementById("input__random").addEventListener("click", function(){
@@ -146,13 +148,19 @@ const scene = new THREE.Scene();
         console.error( error );
       } );
 
+      //move donut up on screen in mobile
+      if (window.innerWidth < 768) {
+        camera.position.z = 50;
+      }
+
+
+
       //increase canvas size when window is resized
       window.addEventListener('resize', () => {
         renderer.setSize(window.innerWidth, window.innerHeight);
         camera.aspect = window.innerWidth / window.innerHeight;
         camera.updateProjectionMatrix();
       });
-      camera.position.z = 5;
 
       //add orbit controls
       const controls = new OrbitControls( camera, renderer.domElement );
@@ -162,6 +170,17 @@ const scene = new THREE.Scene();
       //restrict zoom in and out
       controls.minDistance = 3;
       controls.maxDistance = 7;
+      //don't allow rotation
+      controls.enableRotate = false;
+      //don't allow panning
+      controls.enablePan = false;
+
+      //show the top of donut in mobile
+      if (window.innerWidth < 768) {
+        controls.minPolarAngle = Math.PI/2;
+        controls.maxPolarAngle = Math.PI/2;
+      }
+      
 
 
 			function animate() {
@@ -181,14 +200,14 @@ const scene = new THREE.Scene();
         console.log(renderer.domElement);
         const screenshot = renderer.domElement.toDataURL("image/webp");
         //save input as name
-        const name = document.getElementById('name').value;
+        const name = document.getElementById('input__name').value;
         console.log(name);
 
         //get rgb value from dropdown
-        const flavor = document.getElementById('flavor').value;
+        const flavor = document.getElementById('configurator__flavor').value;
 
         //get email from input
-        const email = document.getElementById('email').value;
+        const mail = document.getElementById('input__email').value;
         //add restraint to email input
 
         //send data to backend
@@ -196,7 +215,7 @@ const scene = new THREE.Scene();
           name: name,
           glaze: flavor,
           image: screenshot,
-          email, email,
+          email: mail,
 
         };
         fetch(apiURL, {
