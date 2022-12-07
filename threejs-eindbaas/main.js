@@ -39,8 +39,16 @@ const scene = new THREE.Scene();
       loader.load( '/assets/gltf/donut.glb', function ( gltf ) {
         gltf.scene.scale.set(25,25,25);
         //set donut to 60% of canvas width
-    
-        gltf.scene.position.set(0,0,0); 
+        //put donut at the bottom of the canvas
+        gltf.scene.position.set(0,0,0);
+        //move gltf y position down on mobile
+        if(window.innerWidth < 768){
+          gltf.scene.position.y = -3;
+          //fixed x and z position on mobile
+          gltf.scene.position.x = 0;
+          gltf.scene.position.z = 0;
+        }
+
         scene.add( gltf.scene );
         //add function to button randomize
         document.getElementById("input__random").addEventListener("click", function(){
@@ -170,21 +178,11 @@ const scene = new THREE.Scene();
       //restrict zoom in and out
       controls.minDistance = 3;
       controls.maxDistance = 7;
-      //don't allow rotation
-      controls.enableRotate = false;
-      //don't allow panning
-      controls.enablePan = false;
-
-      //show the top of donut in mobile
-      if (window.innerWidth < 768) {
-        controls.minPolarAngle = Math.PI/2;
-        controls.maxPolarAngle = Math.PI/2;
-      }
-      
 
 
 			function animate() {
 				requestAnimationFrame( animate );
+        
 
 				renderer.render( scene, camera );
 			};
@@ -214,6 +212,7 @@ const scene = new THREE.Scene();
         const data = {
           name: name,
           glaze: flavor,
+          sprinkles: configurator__sprinkles.value,
           image: screenshot,
           email: mail,
 
