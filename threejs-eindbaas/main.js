@@ -13,6 +13,11 @@ const scene = new THREE.Scene();
       renderer.setSize( window.innerWidth, window.innerHeight );
       document.body.appendChild( renderer.domElement );
 
+      //set camera view further from donut to see the whole donut
+      camera.position.z = 5;
+      camera.position.y = 3;
+
+
       //set background color to #E72C70
       renderer.setClearColor(0xE72C70, 1);
 
@@ -23,6 +28,24 @@ const scene = new THREE.Scene();
       //add directional light
       const directionalLight = new THREE.DirectionalLight( 0xffffff, 0.5 );
       scene.add( directionalLight );
+
+      //add spotlight to donut
+      const spotLight = new THREE.SpotLight( 0xffffff, 0.5 );
+      spotLight.position.set( 0, 2, 2 );
+      spotLight.castShadow = true;
+      scene.add( spotLight );
+
+      //Make donut look glossy
+      spotLight.shadow.mapSize.width = 1024;
+      spotLight.shadow.mapSize.height = 1024;
+      spotLight.shadow.camera.near = 500;
+      spotLight.shadow.camera.far = 4000;
+      spotLight.shadow.camera.fov = 30;
+
+      //decrease spotlight intensity
+      spotLight.intensity = 0.5;
+
+
 
       //create an array with rgb values for each dropdown option
       const colors = [
@@ -42,13 +65,6 @@ const scene = new THREE.Scene();
         //put donut at the bottom of the canvas
         gltf.scene.position.set(0,0,0);
         //move gltf y position down on mobile
-        if(window.innerWidth < 768){
-          gltf.scene.position.y = -3;
-          //fixed x and z position on mobile
-          gltf.scene.position.x = 0;
-          gltf.scene.position.z = 0;
-        }
-
         scene.add( gltf.scene );
         //add function to button randomize
         document.getElementById("input__random").addEventListener("click", function(){
@@ -161,8 +177,6 @@ const scene = new THREE.Scene();
         camera.position.z = 50;
       }
 
-
-
       //increase canvas size when window is resized
       window.addEventListener('resize', () => {
         renderer.setSize(window.innerWidth, window.innerHeight);
@@ -182,17 +196,40 @@ const scene = new THREE.Scene();
 
 			function animate() {
 				requestAnimationFrame( animate );
-        
+        //rotate spotlight around donut
+        spotLight.position.x = Math.sin( Date.now() * 0.0007 ) * 3;
+        spotLight.position.z = Math.cos( Date.now() * 0.0007 ) * 3;
+
+        //get donut, glaze and sprinkles from scene
+        const donut = scene.getObjectByName('donut');
+        const glaze = scene.getObjectByName('glaze');
+        const sprinkles = scene.getObjectByName('topping');
+
+        //rotate donut, glaze and sprinkles around donut axis
+        donut.rotation.y += 0.01;
+        glaze.rotation.y += 0.01;
+        sprinkles.rotation.y += 0.01;
+
+
+
+        controls.update();
+
+
 
 				renderer.render( scene, camera );
 			};
-      const apiURL = 'https://donutello-backend.onrender.com/api/v1/donuts';
+      const apiURL = 'https://eindbaas-donutello-node.onrender.com/api/v1/donuts';
 
       //save donut gltb model to backend
       const saveButton = document.getElementById('input__button');
       saveButton.addEventListener('click', function() {
-        const donut = scene.getObjectByName('donut');
-        //get color from array based on dropdown value
+
+        //stop rotation of donut, glaze and sprinkles
+        donut.rotation.y = 0;
+        glaze.rotation.y = 0;
+        sprinkles.rotation.y = 0;
+
+        
           
         //get screenshot of donut
         console.log(renderer.domElement);
