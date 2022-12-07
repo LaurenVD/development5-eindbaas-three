@@ -26,10 +26,11 @@
         <option class="configurator__sprinkles--item" value="crystal">Kristalpoeder</option>
       </select></select><div class="configurator__select__arrow"></div>
       <div class="input">
-        <input id="input__name" type="text" value="" placeholder="Uw bedrijfsnaam hier">
-        <input id="input__email" type="text" value="" placeholder="Uw email hier">
+        <input id="input__name" type="text" value="" placeholder="Uw bedrijfsnaam hier" required>
+        <input id="input__email" type="text" value="" placeholder="Uw email hier" required>
+        <p id ='input__error'></p>
         <button id="input__button">Sla de donut op!</button>
-        <button id = "input__random">Willekeurige donut</button>
+        <p id="input__saved"></p>
       </div>
       <!-- make an upload button for image-->
       <h2 class = "configurator--logo">Laad hier je logo op</h2>

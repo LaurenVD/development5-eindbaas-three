@@ -66,15 +66,6 @@ const scene = new THREE.Scene();
         gltf.scene.position.set(0,0,0);
         //move gltf y position down on mobile
         scene.add( gltf.scene );
-        //add function to button randomize
-        document.getElementById("input__random").addEventListener("click", function(){
-          gltf.scene.traverse( function ( child ) {
-            if ( child.isMesh ) {
-              child.material.color.setHex( Math.random() * 0xffffff );
-            }
-          } );
-
-        });
 
         document.getElementById("configurator__flavor").addEventListener("change", function(e){
           //get the value of the dropdown menu
@@ -209,13 +200,7 @@ const scene = new THREE.Scene();
         donut.rotation.y += 0.01;
         glaze.rotation.y += 0.01;
         sprinkles.rotation.y += 0.01;
-
-
-
         controls.update();
-
-
-
 				renderer.render( scene, camera );
 			};
       const apiURL = 'https://eindbaas-donutello-node.onrender.com/api/v1/donuts';
@@ -229,7 +214,10 @@ const scene = new THREE.Scene();
         glaze.rotation.y = 0;
         sprinkles.rotation.y = 0;
 
-        
+        //show donut opgeslagen in input__saved
+        const saved = document.getElementById('input__saved');
+        saved.innerHTML = "Donut opgeslagen!";
+
           
         //get screenshot of donut
         console.log(renderer.domElement);
@@ -243,7 +231,7 @@ const scene = new THREE.Scene();
 
         //get email from input
         const mail = document.getElementById('input__email').value;
-        //add restraint to email input
+
 
         //send data to backend
         const data = {

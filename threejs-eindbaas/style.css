@@ -22,7 +22,6 @@ body {
   width: 25%;
   height: 100%;
   background-color: #fff;
-  border-right: 1px solid #ccc;
   padding: 20px;
   box-sizing: border-box;
 }
@@ -38,7 +37,7 @@ body {
      border-style: inset;
      border-radius: 10px;
      box-shadow: 7px 7px 10px rgba(66,66,66,.75);
-     margin-top: 50px;
+     margin-top: 30px;
 }
 
 ::placeholder {
@@ -81,6 +80,7 @@ select {
   margin-bottom: 20px;
   position: relative;
   }
+  
 
 /* make drop down menu appear to come out of dropdown box */
 select option {
@@ -93,19 +93,27 @@ select option {
     font-size: 14px;
   }
 
+  /* hide input__error, input__succes and input__saved */
+  #input__error, #input__saved {
+    display: none;
+  }
+
    /* put the configurator on the bottom of page instead of the left side*/
   @media screen and (max-width: 600px) {
 
-    /* allign the configurator to the bottom of the page*/
+    /* put configurator at the bottom of the screen */
     .configurator {
-      position: relative;
+      position: absolute;
       left: 0;
+      top: 0;
       width: 100%;
-      height: 50%;
-      padding: 0;
+      height: 55%;
       background-color: #fff;
+      border-right: 1px solid #ccc;
+      padding: 20px;
       box-sizing: border-box;
     }
+
 
     #app {
       position: absolute;
