@@ -166,6 +166,10 @@ const scene = new THREE.Scene();
       //move donut up on screen in mobile
       if (window.innerWidth < 768) {
         camera.position.z = 50;
+        //zoom out on mobile
+        camera.zoom = 0.8;
+        camera.updateProjectionMatrix();
+
       }
 
       //increase canvas size when window is resized
@@ -195,11 +199,15 @@ const scene = new THREE.Scene();
         const donut = scene.getObjectByName('donut');
         const glaze = scene.getObjectByName('glaze');
         const sprinkles = scene.getObjectByName('topping');
+        //get plane from scene
+        const plane = scene.getObjectByName('plane');
 
         //rotate donut, glaze and sprinkles around donut axis
         donut.rotation.y += 0.01;
         glaze.rotation.y += 0.01;
         sprinkles.rotation.y += 0.01;
+
+        //rotate plane around donut axis
         controls.update();
 				renderer.render( scene, camera );
 			};
@@ -208,11 +216,6 @@ const scene = new THREE.Scene();
       //save donut gltb model to backend
       const saveButton = document.getElementById('input__button');
       saveButton.addEventListener('click', function() {
-
-        //stop rotation of donut, glaze and sprinkles
-        donut.rotation.y = 0;
-        glaze.rotation.y = 0;
-        sprinkles.rotation.y = 0;
 
         //show donut opgeslagen in input__saved
         const saved = document.getElementById('input__saved');

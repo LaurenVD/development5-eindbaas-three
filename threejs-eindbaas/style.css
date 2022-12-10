@@ -104,20 +104,20 @@ select option {
     /* put configurator at the bottom of the screen */
     .configurator {
       position: absolute;
-      left: 0;
-      top: 0;
       width: 100%;
       height: 55%;
       background-color: #fff;
       border-right: 1px solid #ccc;
-      padding: 20px;
-      box-sizing: border-box;
+      box-sizing: border-box;      
+       /* remove padding on left side */
+      padding: 20px 0px;
     }
 
 
+
     #app {
-      position: absolute;
-      z-index: 1;
+      padding-left: 20px;
+      padding-right: 20px;
     }
 
     /* put canvas in the background*/
@@ -126,6 +126,7 @@ select option {
       top: 0;
       left: 0;
       z-index: -1;
+      margin-top: 50%;
     }
     
 
@@ -156,6 +157,7 @@ select option {
     .configurator--logo {
       padding: 10px;
     }
+
 
 
 }
