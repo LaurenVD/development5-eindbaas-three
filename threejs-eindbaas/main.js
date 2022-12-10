@@ -248,9 +248,9 @@ const scene = new THREE.Scene();
         const plane = scene.getObjectByName('plane');
 
         //rotate donut, glaze and sprinkles around donut axis
-        donut.rotation.y += 0.004;
-        glaze.rotation.y += 0.004;
-        sprinkles.rotation.y += 0.004;
+        if(donut) donut.rotation.y += 0.004;
+        if(glaze) glaze.rotation.y += 0.004;
+        if(sprinkles) sprinkles.rotation.y += 0.004;
 
         //rotate plane around donut axis
         controls.update();
