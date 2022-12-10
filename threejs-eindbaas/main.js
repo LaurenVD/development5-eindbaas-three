@@ -55,7 +55,23 @@ const scene = new THREE.Scene();
         [123,63,0],
         //strawberry
         [252,90,141],
+        //pistache
+        [169,211,158],
+        //limoen
+        [50,205,50],
+        //kokos
+        [227,221,205],
+        //kersen
+        [204,37,44],
+        //caramel
+        [181,126,63],
+        //banaan
+        [255,225,53],
+        //speculaas
+        [181,101,29],
+        
       ];
+
 
       //import gltf model from /assets
       const loader = new GLTFLoader();
@@ -87,7 +103,22 @@ const scene = new THREE.Scene();
             //set glaze rgb value to colors array strawberry
             glaze.material.color.setRGB(colors[2][0]/255,colors[2][1]/255,colors[2][2]/255);
           }
-            
+          //if dropdown is banana, set color to banana
+          if(flavorColor == "banana"){
+            //set glaze rgb value to colors array banana
+            glaze.material.color.setRGB(colors[8][0]/255,colors[8][1]/255,colors[8][2]/255);
+          }
+          //if dropdown is caramel, set color to caramel
+          if(flavorColor == "caramel"){
+            //set glaze rgb value to colors array caramel
+            glaze.material.color.setRGB(colors[7][0]/255,colors[7][1]/255,colors[7][2]/255);
+          }
+          //if dropdown is cherry, set color to cherry
+          if(flavorColor == "cherry"){
+            //set glaze rgb value to colors array cherry
+            glaze.material.color.setRGB(colors[6][0]/255,colors[6][1]/255,colors[6][2]/255);
+          }
+   
         });
         
         //change topping color according to sprinkles dropdown
@@ -103,24 +134,35 @@ const scene = new THREE.Scene();
             sprinkles.visible = true;
             sprinkles.material.color.setRGB(colors[1][0]/255,colors[1][1]/255,colors[1][2]/255);
           }
-          //if dropdown is rainbow, set color to rainbow
-          if(sprinklesColor == "sugar"){
-            //set glaze rgb to white color
+          //if dropdown is limoen, set color to limoen
+          if(sprinklesColor == "limoen"){
+            //set glaze rgb value to colors array limoen
+            //set sprinkles to visible
             sprinkles.visible = true;
-            sprinkles.material.color.setRGB(1,1,1);
+            sprinkles.material.color.setRGB(colors[4][0]/255,colors[4][1]/255,colors[4][2]/255);
+          }
+          //if dropdown is pistache, set color to pistache
+          if(sprinklesColor == "pistache"){
+            //set glaze rgb value to colors array pistache
+            //set sprinkles to visible
+            sprinkles.visible = true;
+            sprinkles.material.color.setRGB(colors[3][0]/255,colors[3][1]/255,colors[3][2]/255);
+          }
+          //if dropdown is kokos, set color to kokos
+          if(sprinklesColor == "kokos"){
+            //set glaze rgb value to colors array kokos
+            //set sprinkles to visible
+            sprinkles.visible = true;
+            sprinkles.material.color.setRGB(colors[5][0]/255,colors[5][1]/255,colors[5][2]/255);
+          }
+          //if dropdown is speculaas, set color to speculaas
+          if(sprinklesColor == "speculaas"){
+            //set glaze rgb value to colors array speculaas
+            //set sprinkles to visible
+            sprinkles.visible = true;
+            sprinkles.material.color.setRGB(colors[9][0]/255,colors[9][1]/255,colors[9][2]/255);
+          }
 
-          }
-          //if dropdown is crystal, set color to crystal
-          if(sprinklesColor == "crystal"){
-            //set glaze rgb to blue color
-            sprinkles.visible = true;
-            sprinkles.material.color.setRGB(0,0,1);
-          }
-          //if dropdown is none, don't show sprinkles
-          if(sprinklesColor == "none"){
-            //set glaze rgb to very light blue color
-            sprinkles.visible = false;
-          }
 
         });
 
@@ -156,6 +198,8 @@ const scene = new THREE.Scene();
           scene.add( plane );
           //show logo on both sides
           plane.material.side = THREE.DoubleSide;
+
+
         }
         );
           
@@ -203,9 +247,9 @@ const scene = new THREE.Scene();
         const plane = scene.getObjectByName('plane');
 
         //rotate donut, glaze and sprinkles around donut axis
-        donut.rotation.y += 0.01;
-        glaze.rotation.y += 0.01;
-        sprinkles.rotation.y += 0.01;
+        donut.rotation.y += 0.004;
+        glaze.rotation.y += 0.004;
+        sprinkles.rotation.y += 0.004;
 
         //rotate plane around donut axis
         controls.update();
