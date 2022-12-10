@@ -75,7 +75,7 @@ const scene = new THREE.Scene();
 
       //import gltf model from /assets
       const loader = new GLTFLoader();
-      loader.load( 'public/gltf/donut.glb', function ( gltf ) {
+      loader.load( './public/gltf/donut.glb', function ( gltf ) {
         gltf.scene.scale.set(25,25,25);
         //set donut to 60% of canvas width
         //put donut at the bottom of the canvas
@@ -200,8 +200,6 @@ const scene = new THREE.Scene();
           plane.material.side = THREE.DoubleSide;
           //set the plane position to the donut
           plane.position.set(0, 3.95, 5);
-
-          
 
         }
         );
