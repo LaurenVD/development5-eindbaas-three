@@ -187,18 +187,21 @@ const scene = new THREE.Scene();
           const geometry = new THREE.PlaneGeometry( 1, 1, 32 );
           //create a new mesh with the geometry and material
           const plane = new THREE.Mesh( geometry, material );
-          //set the plane position to the donut
-          plane.position.set(0,1.77,1.2);
      
           //rotate the plane so it's facing up
           plane.rotation.x = -Math.PI/2;
           //set the plane scale to the donut
-          plane.scale.set(0.5,0.5,0.5);
-          //add the plane to the scene
-          scene.add( plane );
+          plane.scale.set(2, 2, 2);
+          //get donut from model
+          const donut = gltf.scene.getObjectByName("donut");
+          //add the plane to the donut
+          donut.add(plane);
           //show logo on both sides
           plane.material.side = THREE.DoubleSide;
+          //set the plane position to the donut
+          plane.position.set(0, 3.95, 5);
 
+          
 
         }
         );
@@ -260,7 +263,6 @@ const scene = new THREE.Scene();
       //save donut gltb model to backend
       const saveButton = document.getElementById('input__button');
       saveButton.addEventListener('click', function() {
-
         //show donut opgeslagen in input__saved
         const saved = document.getElementById('input__saved');
         saved.innerHTML = "Donut opgeslagen!";
