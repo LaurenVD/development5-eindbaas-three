@@ -261,9 +261,20 @@ const scene = new THREE.Scene();
       //save donut gltb model to backend
       const saveButton = document.getElementById('input__button');
       saveButton.addEventListener('click', function() {
+        //show display input__saved
+        document.getElementById('input__saved').style.display = "block";
         //show donut opgeslagen in input__saved
-        const saved = document.getElementById('input__saved');
-        saved.innerHTML = "Donut opgeslagen!";
+        document.getElementById('input__saved').innerHTML = "Donut opgeslagen!";
+
+        //validate email input 
+        const email = document.getElementById('input__email').value;
+        const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+        if(!emailRegex.test(email)){
+          //show email is niet geldig in input__saved
+          document.getElementById('input__saved').innerHTML = "Email is niet geldig!";
+          return;
+        }
+        
 
           
         //get screenshot of donut
@@ -299,6 +310,7 @@ const scene = new THREE.Scene();
         .then(response => response.json())
         .then(data => {
           console.log('Success:', data);
+          
         })
         .catch((error) => {
           console.error('Error:', error);
