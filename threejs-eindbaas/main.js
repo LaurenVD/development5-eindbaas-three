@@ -267,6 +267,7 @@ const scene = new THREE.Scene();
         document.getElementById('input__saved').style.display = "block";
         //show donut opgeslagen in input__saved
         document.getElementById('input__saved').innerHTML = "Donut opgeslagen!";
+        document.querySelector(".success").style.display = "block";
 
         //validate email input 
         const email = document.getElementById('input__email').value;

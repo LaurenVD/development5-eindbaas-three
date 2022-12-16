@@ -127,7 +127,44 @@ select option {
 
   }
 
-  
+  .success {
+    font-family: 'Dosis', sans-serif;
+    background-color: #82D1E4;
+    color: #E72C70;
+    border: none;
+    padding: 10px 15px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    box-shadow: 7px 7px 10px rgba(66,66,66,.75);
+    margin-top: 30px;
+    border-radius: 10px;
+    /* put the button in the middle of the canvas */
+    position: absolute;
+    top: 40%;
+    left: 46%;
+    display: none;
+  }
+
+  .success:hover {
+    background-color: #E72C70;
+    color: #F7F249;
+    box-shadow: 7px 7px 10px rgba(66,66,66,.75);
+    /* scale button up */
+    transform: scale(1.1);
+    transition: 0.3s;
+
+  }
+
+  /* fade in button success */
+  .success {
+    animation: fadeIn ease 3s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+  }
 
 
    /* put the configurator on the bottom of page instead of the left side*/
