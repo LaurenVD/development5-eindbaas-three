@@ -124,8 +124,10 @@ select option {
     /* scale button up */
     transform: scale(1.1);
     transition: 0.3s;
-    
+
   }
+
+  
 
 
    /* put the configurator on the bottom of page instead of the left side*/
