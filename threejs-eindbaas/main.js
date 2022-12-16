@@ -181,6 +181,8 @@ const scene = new THREE.Scene();
           //make transparent based on alpha channel
           texture.minFilter = THREE.LinearFilter;
 
+          
+
           //create a new material with the texture
           const material = new THREE.MeshBasicMaterial({map: texture, transparent: true});
           //create a new plane geometry
@@ -274,9 +276,8 @@ const scene = new THREE.Scene();
           document.getElementById('input__saved').innerHTML = "Email is niet geldig!";
           return;
         }
-        
 
-          
+       
         //get screenshot of donut
         console.log(renderer.domElement);
         const screenshot = renderer.domElement.toDataURL("image/webp");

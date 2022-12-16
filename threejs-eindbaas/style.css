@@ -111,6 +111,20 @@ select option {
     border-width: 2px;
     border-radius: 10px;
     box-shadow: 7px 7px 10px rgba(66,66,66,.75);
+    /* make width smaller */
+    width: 50%;
+
+  }
+
+  /* add hover effect and click effect to input__button */
+  #input__button:hover {
+    background-color: #E72C70;
+    color: #F7F249;
+    box-shadow: 7px 7px 10px rgba(66,66,66,.75);
+    /* scale button up */
+    transform: scale(1.1);
+    transition: 0.3s;
+    
   }
 
 
