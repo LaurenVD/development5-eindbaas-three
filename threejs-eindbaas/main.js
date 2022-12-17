@@ -163,6 +163,11 @@ const scene = new THREE.Scene();
             sprinkles.material.color.setRGB(colors[9][0]/255,colors[9][1]/255,colors[9][2]/255);
           }
 
+          //if dropdown is none, set sprinkles to invisible
+          if(sprinklesColor == "none"){
+            sprinkles.visible = false;
+          }
+
 
         });
 
