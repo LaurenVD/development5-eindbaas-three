@@ -1,0 +1,241 @@
+@import url('https://fonts.googleapis.com/css2?family=Dosis:wght@600&display=swap');
+
+.root {
+  --pinkish: #E72C70;
+  --blueish: #82D1E4;
+  --yellowish: #F7F249;
+}
+
+
+body {
+  /* select a nice round font */
+  font-family: 'Dosis', sans-serif;
+
+}
+
+
+/* put .configurator on left side of screen */
+.configurator {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 25%;
+  height: 100%;
+  background-color: #fff;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+
+#input__name, #input__email {
+  padding: 1rem 1.5rem;
+  border-bottom: 2px solid #E72870;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+#input__text {
+  font-size: 1.2rem;
+  margin: 5px;
+}
+
+::placeholder {
+  color: lightgray;
+}
+
+/*dont show border around input fields */
+input:focus {
+  outline: none;
+}
+
+#input__button, #input__random {
+  font-family: 'Dosis', sans-serif;
+  background-color: #82D1E4;
+  color: #E72C70;
+  border: none;
+  padding: 10px 15px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  box-shadow: 7px 7px 10px rgba(66,66,66,.75);
+  margin-top: 30px;
+  border-radius: 10px;
+}
+
+/* put canvas in the background and make it 70% of screen */
+canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+
+/* make select boxes round and wider */
+select {
+  padding: 10px 5px;
+  width: 100%;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  background-color: #fff;
+  font-size: 16px;
+  margin-bottom: 20px;
+  position: relative;
+  }
+  
+
+/* make drop down menu appear to come out of dropdown box */
+select option {
+  padding: 10px 5px;
+  }
+  
+  /* change upload button and text font and size */
+  input[type="file"] {
+    font-family: 'Dosis', sans-serif;
+    font-size: 14px;
+  }
+
+  #input__saved {
+    display: none;
+    font-family: 'Dosis', sans-serif;
+    font-size: 1rem;
+    color: green;
+    box-sizing: border-box;
+    padding: 10px 5px;
+    margin-top: 20px;
+    border-style: solid;
+    border-width: 2px;
+    border-radius: 10px;
+    box-shadow: 7px 7px 10px rgba(66,66,66,.75);
+    /* make width smaller */
+    width: 50%;
+
+  }
+
+  /* add hover effect and click effect to input__button */
+  #input__button:hover {
+    background-color: #E72C70;
+    color: #F7F249;
+    box-shadow: 7px 7px 10px rgba(66,66,66,.75);
+    /* scale button up */
+    transform: scale(1.1);
+    transition: 0.3s;
+
+  }
+
+  .success {
+    font-family: 'Dosis', sans-serif;
+    background-color: #82D1E4;
+    color: #E72C70;
+    border: none;
+    padding: 10px 15px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    box-shadow: 7px 7px 10px rgba(66,66,66,.75);
+    margin-top: 30px;
+    border-radius: 10px;
+    /* put the button in the middle of the canvas */
+    position: absolute;
+    top: 40%;
+    left: 46%;
+    display: none;
+  }
+
+  .success:hover {
+    background-color: #E72C70;
+    color: #F7F249;
+    box-shadow: 7px 7px 10px rgba(66,66,66,.75);
+    /* scale button up */
+    transform: scale(1.1);
+    transition: 0.3s;
+
+  }
+
+  /* fade in button success */
+  .success {
+    animation: fadeIn ease 3s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+  }
+
+
+   /* put the configurator on the bottom of page instead of the left side*/
+  @media screen and (max-width: 600px) {
+
+    /* put configurator at the bottom of the screen */
+    .configurator {
+      position: absolute;
+      width: 100%;
+      height: 55%;
+      background-color: #fff;
+      border-right: 1px solid #ccc;
+      box-sizing: border-box;      
+       /* remove padding on left side */
+      padding: 20px 0px;
+    }
+
+
+
+    #app {
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+
+    /* put canvas in the background*/
+    canvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: -1;
+      margin-top: 60%;
+    }
+    
+
+
+    /* remove spacing between select boxes */
+    select {
+      margin-bottom: 0;
+      font-size: 14px;
+    }
+
+    /* fit the 2 input boxes next to eachother */
+    .input__name {
+      padding: 10px 5px;
+      margin-top: 0px;
+  }
+
+    h2 {
+      margin: 0;
+      font-size: 3vh;
+    }
+    /* remove spacing above div input*/
+    #input__name, #input__email {
+      margin-top: 5px;
+      font-size: 13px;
+
+    }
+
+    .configurator--logo {
+      padding: 10px;
+    }
+
+
+
+}
+
+
+  
+
+
+
+
+

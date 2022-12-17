@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/public/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Donuttello Configurator</title>
+  </head>
+  <body>
+  <div class="configurator">
+    <div id="app">
+      <!-- make a dropdown menu for the donut flavors-->
+      <h2>Glaze</h2>
+      <select id="configurator__flavor">
+        <option>--Select--</option>
+        <option class="configurator__flavor--item" value="vanilla">Vanille</option>
+        <option class="configurator__flavor--item" value="chocolate">Chocolade</option>
+        <option class="configurator__flavor--item" value="strawberry">Aardbei</option>
+        <option class="configurator__flavor--item" value="banana">Banaan</option>
+        <option class="configurator__flavor--item" value="caramel">Karamel</option>
+        <option class="configurator__flavor--item" value="cherry">Kersen</option>
+      </select><div class="configurator__select__arrow"></div>
+      <h2>Sprinkles</h2>
+      <select id="configurator__sprinkles">
+        <option>--Select--</option>
+        <option class="configurator__sprinkles--item" value="none">Geen</option>
+        <option class="configurator__sprinkles--item" value="limoen">Limoen</option>
+        <option class="configurator__sprinkles--item" value="kokos">Kokos</option>
+        <option class="configurator__sprinkles--item" value="speculaas">Speculaas</option>
+        <option class="configurator__sprinkles--item" value="pistache">Pistache</option>
+      </select></select><div class="configurator__select__arrow"></div>
+      <div class="input">
+        <p id="input__text">Uw bedrijfsnaam hier</p>
+        <input id="input__name" type="text" value="" placeholder="Naam" required>
+        <p id="input__text">Uw email hier</p>
+        <input id="input__email" type="text" value="" placeholder="Email" required>
+        <h2 class = "configurator--logo">Laad hier je logo op</h2>
+        <input type="file" id="configurator__file" accept="image/*" />
+        <br>
+        <p id ='input__error'></p>
+        <button id="input__button">Sla de donut op!</button>
+        <p id="input__saved"></p>
+      </div>
+      <!-- make an upload button for image-->
+      
+  </div>
+
+  
+  <div class="threeScene">
+    <script type="module" src="main.js"></script>
+  </div>
+
+  </div>
+    
+  <a class="success" href="https://eindbaas-donuttello.vercel.app/">Ga naar de gallerij</a>     
+  </body>
+</html>
