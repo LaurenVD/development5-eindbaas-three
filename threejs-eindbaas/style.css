@@ -28,16 +28,13 @@ body {
 
 
 #input__name, #input__email {
-    font-family: 'Dosis', sans-serif;
-    font-style: bold;
-    padding: 10px 12px;
-     font-size: 19px;
-     border-width: 0px;
-     background-color: #E72C70;
-     color: #F7F249;
-     border-style: inset;
-     border-radius: 10px;
-     box-shadow: 7px 7px 10px rgba(66,66,66,.75);
+  padding: 1rem 1.5rem;
+  border-bottom: 2px solid #E72870;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
 }
 
 #input__text {
@@ -46,7 +43,12 @@ body {
 }
 
 ::placeholder {
-  color: #F7F249
+  color: lightgray;
+}
+
+/*dont show border around input fields */
+input:focus {
+  outline: none;
 }
 
 #input__button, #input__random {
@@ -106,7 +108,6 @@ select option {
     box-sizing: border-box;
     padding: 10px 5px;
     margin-top: 20px;
-    border: #E72C70;
     border-style: solid;
     border-width: 2px;
     border-radius: 10px;
